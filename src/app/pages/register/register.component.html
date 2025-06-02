@@ -1,34 +1,35 @@
 <div class="login-container">
   <h1 class="login-title">Register</h1>
 
-  <form class="login-form">
+  <form class="login-form" [formGroup]="registerForm" >
     <label for="email" class="login-label">Email</label>
-    <input id="email" type="email" class="login-input" placeholder="email@example.com" />
+    <input id="email" type="email" class="login-input" formControlName="email" placeholder="email@example.com" />
 
     <label for="username" class="login-label">Username</label>
-    <input id="username" type="text" class="login-input" placeholder="your username" />
+    <input id="username" type="text" class="login-input" formControlName="name" placeholder="your username" />
 
     <label for="password" class="login-label">Password</label>
-    <input id="password" type="password" class="login-input" placeholder="Enter your password" />
+    <input id="password" type="password" class="login-input" formControlName="password" placeholder="Enter your password" />
 
     <div class="checkbox-group">
       <label class="checkbox-label">
-        <input type="checkbox" name="role" value="user" />
-        Usuario
-      </label>
+  <input type="radio" name="role" value="user" />
+  Usuário
+</label>
 
-      <label class="checkbox-label">
-        <input type="checkbox" name="role" value="professional" />
-        Profissional
-      </label>
+<label class="checkbox-label">
+  <input type="radio" name="role" value="professional" />
+  Profissional
+</label>
+
     </div>
 
-    <button type="submit" class="login-button">Register</button>
+    <button type="submit" class="login-button" [disabled]="!registerForm.valid">Register</button>
   </form>
 
   <p class="login-text">
     Already have an account?
-    <span class="register-link">Login</span>
+    <span class="register-link" (click)="navigate()">Login</span>
   </p>
 
   <img src="deloitte-black.png" alt="Deloitte logo" class="login-logo" />

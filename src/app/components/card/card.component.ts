@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Servico } from '../../model/servico';
+import { ModalInfoComponent } from "../modal-info/modal-info.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card',
-  imports: [],
+  imports: [ModalInfoComponent, CommonModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
@@ -34,4 +36,18 @@ export class CardComponent {
       nomeProfissional: 'Carlos Pereira'
     }
   ];
+
+
+  modalAberto = false;
+  itemSelecionado: any = null;
+
+  abrirModal(item: any) {
+    this.itemSelecionado = item;
+    this.modalAberto = true;
+  }
+
+  fecharModal() {
+    this.modalAberto = false;
+    this.itemSelecionado = null;
+  }
 }

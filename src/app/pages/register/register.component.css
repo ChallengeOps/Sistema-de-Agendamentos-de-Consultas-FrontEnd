@@ -35,8 +35,9 @@
 
 .checkbox-group {
   display: flex;
-  justify-content: space-between;
-  width: 300px;
+  justify-content: center; /* Centraliza horizontalmente */
+  gap: 30px; /* Espaço entre as opções */
+  width: 100%; /* Pega toda a largura do container */
   margin: 10px 0 20px;
 }
 
@@ -45,16 +46,22 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
 }
 
-.checkbox-group {
-  display: flex;
-  justify-content: center; /* CENTRALIZA horizontalmente */
-  gap: 30px; /* espaço entre as opções */
-  width: 100%; /* pega toda a largura do container */
-  margin: 10px 0 20px;
+/* Estilo para o radio button verde */
+.checkbox-label input[type="radio"] {
+  accent-color: #1e7e34; /* Verde */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
 }
 
+/* Opcional: deixa o texto verde quando selecionado */
+.checkbox-label input[type="radio"]:checked + span {
+  color: #1e7e34;
+  font-weight: bold;
+}
 
 .login-button {
   width: 300px;
@@ -73,6 +80,11 @@
   background-color: #155d27;
 }
 
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .login-text {
   margin-top: 15px;
   font-size: 14px;
@@ -89,4 +101,3 @@
   margin-top: 30px;
   width: 150px;
 }
-

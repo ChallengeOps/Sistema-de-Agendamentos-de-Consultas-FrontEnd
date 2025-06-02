@@ -50,6 +50,11 @@
   background-color: #155d27;
 }
 
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
 .login-text {
   margin-top: 15px;
   font-size: 14px;

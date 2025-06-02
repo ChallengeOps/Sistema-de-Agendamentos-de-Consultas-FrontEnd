@@ -4,7 +4,7 @@ import { DashClienteComponent } from './pages/dash-cliente/dash-cliente.componen
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DashClienteComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
