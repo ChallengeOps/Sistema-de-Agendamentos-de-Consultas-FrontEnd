@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  showMenu = false;
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
 }

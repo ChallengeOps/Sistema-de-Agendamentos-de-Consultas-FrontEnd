@@ -3,19 +3,15 @@
     <a href="https://www.deloitte.com/br/pt.html" class="logo" aria-label="Página inicial Deloitte">
       <img src="https://www2.deloitte.com/content/dam/assets/logos/deloitte-logo.svg" alt="Deloitte" />
     </a>
-    <nav class="main-nav" aria-label="Navegação principal">
-      <ul>
-        <li><a href="#">Serviços</a></li>
-        <li><a href="#">Setores</a></li>
-        <li><a href="#">Insights</a></li>
-        <li><a href="#">Carreiras</a></li>
-        <li><a href="#">Sobre a Deloitte</a></li>
-      </ul>
-    </nav>
-    <div class="actions">
-      <a href="#" class="language">BR</a>
-      <a href="#" class="search" aria-label="Buscar">&#128269;</a>
-      <button class="menu-mobile" aria-label="Abrir menu">&#9776;</button>
+    <div class="right-group">
+      <nav class="main-nav" [class.open]="showMenu">
+        <ul>
+          <li><a href="#">Serviços</a></li>
+          <li><a href="#">Setores</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="language">LogOut</a>
+      <button class="menu-mobile" (click)="toggleMenu()" aria-label="Abrir menu">&#9776;</button>
     </div>
   </div>
 </header>
