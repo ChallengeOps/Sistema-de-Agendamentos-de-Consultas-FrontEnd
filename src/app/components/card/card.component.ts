@@ -14,22 +14,22 @@ export class CardComponent {
     {
       //crie com base no modelo Servico
       id: 1,
-      nome: 'Corte de Cabelo',
-      descricao: 'Corte de cabelo masculino ou feminino, com estilo moderno.',
+      nome: 'Desenvolvimento de Software',
+      descricao: 'Serviço de desenvolvimento de software personalizado para atender às necessidades do cliente.',
       duracaoEmMinutos: 30,
       nomeProfissional: 'João Silva'
     },
     {
       id: 2,
-      nome: 'Manicure',
-      descricao: 'Serviço de manicure completo, incluindo esmaltação e cuidados com as unhas.',
+      nome: 'SAP',
+      descricao: 'Serviço de consultoria SAP para otimização de processos empresariais.',
       duracaoEmMinutos: 45,
       nomeProfissional: 'Maria Oliveira'
     },
     {
       id: 3,
-      nome: 'Massagem Relaxante',
-      descricao: 'Massagem relaxante para aliviar o estresse e promover o bem-estar.',
+      nome: 'AI e Machine Learning',
+      descricao: 'Serviço de implementação de soluções de inteligência artificial e aprendizado de máquina.',
       duracaoEmMinutos: 60,
       nomeProfissional: 'Carlos Pereira'
     }
