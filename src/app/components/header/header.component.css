@@ -16,7 +16,7 @@
 }
 
 .logo img {
-  height: 36px;
+  height: 27px;
   filter: brightness(0) invert(1); /* Deixa a logo branca se for SVG preto */
 }
 
