@@ -1,1 +1,11 @@
-<p>card works!</p>
+<div class="container-servicos">
+  <h2>Explore as soluções de Engineering, AI & Data</h2>
+  <div class="cards-grid">
+    @for (item of servicos; track $index) {
+    <div class="card">
+      <h3>{{ item.nome }}</h3>
+      <p>{{ item.descricao }}</p>
+    </div>
+  }
+  </div>
+</div>
