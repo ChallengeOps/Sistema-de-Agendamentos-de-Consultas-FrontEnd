@@ -13,18 +13,18 @@
 
     <div class="checkbox-group">
       <label class="checkbox-label">
-  <input type="radio" name="role" value="user" />
+  <input type="radio" formControlName="acesso" name="acesso" value="CLIENTE" />
   Usuário
 </label>
 
 <label class="checkbox-label">
-  <input type="radio" name="role" value="professional" />
+ <input type="radio" formControlName="acesso" name="acesso" value="PROFISSIONAL" /> 
   Profissional
 </label>
 
     </div>
 
-    <button type="submit" class="login-button" [disabled]="!registerForm.valid">Register</button>
+    <button type="submit" class="login-button" [disabled]="!registerForm.valid" (click)="signup()">Register</button>
   </form>
 
   <p class="login-text">
