@@ -5,6 +5,8 @@ import { DashClienteComponent } from './pages/dash-cliente/dash-cliente.componen
 import { RegisterComponent } from './pages/register/register.component';
 import { MinhaAgendaComponent } from './pages/minha-agenda/minha-agenda.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ServicosPageComponent } from './pages/servicos-page/servicos-page.component';
+import { DisponibilidadePageComponent } from './pages/disponibilidade-page/disponibilidade-page.component';
 
 export const routes: Routes = [
     {
@@ -23,10 +25,23 @@ export const routes: Routes = [
     },
     {
         path: 'agenda',
-        component: MinhaAgendaComponent
-    },{
+        component: MinhaAgendaComponent,
+        data: { role: ['CLIENTE', 'PROFISSIONAL'] },
+        canActivate: [AuthGuardService]
+    },
+    {
         path: '',
         redirectTo: '/login',
         pathMatch: 'full'
+    },
+    {
+        path:'servicos',
+        component: ServicosPageComponent
+    },
+    {
+        path:'disponibilidade',
+        component:DisponibilidadePageComponent,
+        data: { role: ['PROFISSIONAL'] },
+        canActivate: [AuthGuardService]
     }
 ];
