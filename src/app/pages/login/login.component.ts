@@ -33,9 +33,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
-      console.log('Email:', email);
-      console.log('Password:', password);
-
+      
       this.service.login(email, password).subscribe({
         next: (response) => {
           const body = response.body;
@@ -46,9 +44,6 @@ export class LoginComponent {
           sessionStorage.setItem('auth-token', body.token);
           sessionStorage.setItem('user-name', body.name);
           sessionStorage.setItem('user-access', body.access);
-          console.log('Token:', body.token);
-          console.log('Nome do usuário:', body.name);
-          console.log('Acesso do usuário:', body.access);
 
           this.toastService.success('Login realizado com sucesso!');
 

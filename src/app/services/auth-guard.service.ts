@@ -14,10 +14,6 @@ export class AuthGuardService {
   const userRole = sessionStorage.getItem('user-access');
   const expectedRole = route.data['role'];
 
-  console.log('Token:', token);
-  console.log('User Role:', userRole);
-  console.log('Expected Role:', expectedRole);
-
   if (!token) {
     this.router.navigate(['/login']);
     return false;
