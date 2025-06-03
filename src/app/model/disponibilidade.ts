@@ -1,5 +1,4 @@
 export class Disponibilidade {
-    id!: number;
- 
-  descricao!: string;
+  disponibilidadeId!: number;
+  descricaoDate!: string;
 }

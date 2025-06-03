@@ -1,8 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Servico } from '../../model/servico';
 import { Disponibilidade } from '../../model/disponibilidade';
 import { CommonModule } from '@angular/common';
 import { agendar } from '../../model/agendar';
+import { DisponibilidadeService } from '../../services/disponibilidade.service';
+import { AgendamentoService } from '../../services/agendamento.service';
+import { Agendamento } from '../../model/agendamento';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-info',
@@ -10,36 +14,32 @@ import { agendar } from '../../model/agendar';
   templateUrl: './modal-info.component.html',
   styleUrl: './modal-info.component.css'
 })
-export class ModalInfoComponent {
+export class ModalInfoComponent implements OnInit {
   @Input() item!: Servico;
   @Output() closed = new EventEmitter<void>();
 
-  disponibilidades: Disponibilidade[] = [
-    {
-      id: 1,
-      descricao: "02/06/2025 (Segunda-feira) - 08:00 às 12:00"
+  disponibilidades: Disponibilidade[] =[];
+
+  constructor (private service: DisponibilidadeService, private agendamentoService: AgendamentoService, private toastservice: ToastrService) { 
+    // Inicialização do componente
+
+  }
+
+ ngOnInit(): void {
+  this.service.getDisponibilidades(this.item.id).subscribe(
+    (disponibilidades: any) => {
+      if (Array.isArray(disponibilidades)) {
+        this.disponibilidades = disponibilidades;
+      } else {
+        this.disponibilidades = [disponibilidades];
+      }
     },
-    {
-      id: 2,
-      descricao: "02/06/2025 (Segunda-feira) - 14:00 às 18:00"
-    },
-    {
-      id: 3,
-      descricao: "03/06/2025 (Terça-feira) - 08:00 às 12:00"
-    },
-    {
-      id: 4,
-      descricao: "03/06/2025 (Terça-feira) - 14:00 às 18:00"
-    },
-    {
-      id: 5,
-      descricao: "04/06/2025 (Quarta-feira) - 08:00 às 12:00"
-    },
-    {
-      id: 6,
-      descricao: "04/06/2025 (Quarta-feira) - 14:00 às 18:00"
+    (error) => {
+      console.error('Erro ao carregar disponibilidades:', error);
     }
-  ];
+  );
+}
+
 
   close() {
     this.closed.emit();
@@ -49,25 +49,31 @@ export class ModalInfoComponent {
 
   selecionarHorario(disponibilidade: Disponibilidade) {
     this.horarioSelecionado = disponibilidade;
-    console.log('Horário selecionado:', disponibilidade);
+    this.toastservice.info('Horário selecionado:', disponibilidade.descricaoDate);
   }
 
   agendar(): void {
     if (!this.horarioSelecionado) {
-      alert('Por favor, selecione um horário para agendar.');
+      this.toastservice.error('Por favor, selecione um horário para agendar.');
       return;
     }
 
-    const agendamento = {
+    const agendamento: agendar = {
       servicoId: this.item.id,  
-      disponibilidadeId: this.horarioSelecionado.id
+      disponibilidadeId: this.horarioSelecionado.disponibilidadeId
     };
 
-    // Aqui você pode chamar seu backend para enviar o agendamento
-    // ex: this.agendamentoService.agendar(agendamento).subscribe(...)
+    this.agendamentoService.agendar(agendamento).subscribe(
+      response => {
+        console.log('Agendamento realizado com sucesso:', response);
+        this.toastservice.success('Agendamento realizado com sucesso!');
+      },
+      error => {  
+        console.error('Erro ao realizar agendamento:', error);
+        this.toastservice.error('Erro ao realizar agendamento. Por favor, tente novamente mais tarde.');
+      }
 
-    console.log('Agendamento enviado:', agendamento);
-
+    );
     this.closed.emit();
   }
 

@@ -5,13 +5,16 @@
   <p>{{ item.descricao }}</p>
 
   <div class="horarios-lista">
+    @for (disponibilidade of disponibilidades; track $index) {
     <button 
-      *ngFor="let disponibilidade of disponibilidades"
       [class.selected]="disponibilidade === horarioSelecionado"
       class="horario-chip"
       (click)="selecionarHorario(disponibilidade)">
-    {{disponibilidade.descricao}}
+    {{disponibilidade.descricaoDate}}
     </button>
+  }@empty {
+    <span class="empty">{{ 'Nenhum horário disponível' }}</span>
+  }
   </div>
   <p><b>Profissional</b>: {{ item.nomeProfissional }}</p>
 

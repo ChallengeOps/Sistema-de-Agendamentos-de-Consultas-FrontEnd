@@ -17,16 +17,4 @@ export class LOGINService {
    login(email: string, password: string) {
   return this.httpClient.post<ResponseDTO>(`${this.apiUrl}/login`, { email, password }, { observe: 'response' });
 }
-
-
-  
-
-  isLoggedIn(): boolean {
-    return !!sessionStorage.getItem('auth-token');
-  }
-
-  getUserAccess(): string | null {
-    return sessionStorage.getItem('user-access');
-  }
-
 }

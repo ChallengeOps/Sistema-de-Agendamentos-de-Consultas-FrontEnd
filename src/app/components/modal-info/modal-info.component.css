@@ -137,6 +137,10 @@
   cursor: pointer;
 }
 
+.empty{
+  color: #b3b3b3;
+}
+
 .btn-confirm {
   padding: 8px 16px;
   background-color: #1e7e34;
