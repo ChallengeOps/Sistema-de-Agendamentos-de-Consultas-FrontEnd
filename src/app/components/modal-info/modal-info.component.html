@@ -1,6 +1,22 @@
- <div class="modal-backdrop" (click)="close()"></div>
-    <div class="modal-content">
-      <h2>{{ item?.nome }}</h2>
-      <p>{{ item?.descricao }}</p>
-      <button (click)="close()">Fechar</button>
-    </div>
+<div class="modal-backdrop" (click)="close()"></div>
+
+<div class="modal-content">
+  <h2>{{ item.nome }}</h2>
+  <p>{{ item.descricao }}</p>
+
+  <div class="horarios-lista">
+    <button 
+      *ngFor="let disponibilidade of disponibilidades"
+      [class.selected]="disponibilidade === horarioSelecionado"
+      class="horario-chip"
+      (click)="selecionarHorario(disponibilidade)">
+    {{disponibilidade.descricao}}
+    </button>
+  </div>
+  <p><b>Profissional</b>: {{ item.nomeProfissional }}</p>
+
+  <div class="modal-actions">
+    <button class="btn-close" (click)="close()"></button>
+    <button class="btn-confirm" (click)="agendar()">Agendar</button>
+  </div>
+</div>

@@ -6,11 +6,11 @@
     <div class="right-group">
       <nav class="main-nav" [class.open]="showMenu">
         <ul>
-          <li><a href="#">Serviços</a></li>
-          <li><a href="#">Agenda</a></li>
+          <li><a href="{{redirect}}" >{{pageOne}}</a></li>
+          <li><a href="">Agenda</a></li>
         </ul>
       </nav>
-      <a href="#" class="language">LogOut</a>
+      <a href="#" class="language" (click)="logout()">LogOut</a>
       <button class="menu-mobile" (click)="toggleMenu()" aria-label="Abrir menu">&#9776;</button>
     </div>
   </div>

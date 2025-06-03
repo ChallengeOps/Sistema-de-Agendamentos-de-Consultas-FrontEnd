@@ -8,7 +8,7 @@
     <label for="password" class="login-label">Password</label>
     <input id="password" type="password" class="login-input" placeholder="Your password" formControlName="password" />
 
-    <button type="submit" class="login-button" [disabled]="!loginForm.valid">Login</button>
+    <button type="submit" class="login-button" [disabled]="!loginForm.valid" (click)="login()">Login</button>
   </form>
 
   <p class="login-text">

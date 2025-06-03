@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { DashClienteComponent } from './pages/dash-cliente/dash-cliente.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MinhaAgendaComponent } from './pages/minha-agenda/minha-agenda.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -12,7 +13,9 @@ export const routes: Routes = [
     },
     {
         path: 'cliente',
-        component:DashClienteComponent
+        component:DashClienteComponent,
+        data: { role: 'CLIENTE' },
+        canActivate: [AuthGuardService]
     },
     {
         path: 'register',
@@ -21,5 +24,9 @@ export const routes: Routes = [
     {
         path: 'agenda',
         component: MinhaAgendaComponent
+    },{
+        path: '',
+        redirectTo: '/login',
+        pathMatch: 'full'
     }
 ];
