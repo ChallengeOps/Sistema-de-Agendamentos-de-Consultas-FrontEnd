@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="servicos-lista">
+    @for (item of servicos; track $index) {
+      <div class="servico-card">
+        <div class="servico-header">
+          <h3>{{ item.nome }}</h3>
+        </div>
+        <div class="servico-body">
+          <p>{{ item.descricao }}</p>
+          <p>Duração: {{ item.duracaoEmMinutos }} min</p>
+        </div>
+        <div class="servico-actions">
+          <button class="btn-excluir" (click)="excluir(item.id)">Excluir</button>
+          <button class="btn-editar">Editar</button>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="adicionar-servico">
+    <button class="btn-adicionar" >Adicionar Serviço</button>
+  </div>
+</div>
+

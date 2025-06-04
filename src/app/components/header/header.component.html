@@ -1,0 +1,29 @@
+<header class="deloitte-header">
+  <div class="container">
+    <a href="" class="logo" aria-label="Página inicial Deloitte">
+      <img src="deloitte-white.png" alt="Deloitte" />
+    </a>
+    <div class="right-group">
+      <nav class="main-nav" [class.open]="showMenu">
+        <button class="close-menu" (click)="toggleMenu()" aria-label="Fechar menu">✕</button>
+        <ul>
+          <li *ngIf="role === 'CLIENTE'">
+            <a href="cliente" (click)="toggleMenu()">Serviços</a>
+          </li>
+          <li>
+            <a href="agenda" (click)="toggleMenu()">Agenda</a>
+          </li>
+          <li *ngIf="role === 'PROFISSIONAL'">
+            <a href="servicos" (click)="toggleMenu()">Serviços</a>
+          </li>
+          <li *ngIf="role === 'PROFISSIONAL'">
+            <a href="disponibilidade" (click)="toggleMenu()">Disponibilidade</a>
+          </li>
+          <li class="logado">{{name}}</li>
+        </ul>
+      </nav>
+      <a href="#" class="language" (click)="logout()">LogOut</a>
+      <button class="menu-mobile" (click)="toggleMenu()" aria-label="Abrir menu">&#9776;</button>
+    </div>
+  </div>
+</header>

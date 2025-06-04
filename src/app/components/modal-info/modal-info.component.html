@@ -1,0 +1,25 @@
+<div class="modal-backdrop" (click)="close()"></div>
+
+<div class="modal-content">
+  <h2>{{ item.nome }}</h2>
+  <p>{{ item.descricao }}</p>
+
+  <div class="horarios-lista">
+    @for (disponibilidade of disponibilidades; track $index) {
+    <button 
+      [class.selected]="disponibilidade === horarioSelecionado"
+      class="horario-chip"
+      (click)="selecionarHorario(disponibilidade)">
+    {{disponibilidade.descricaoDate}}
+    </button>
+  }@empty {
+    <span class="empty">{{ 'Nenhum horário disponível' }}</span>
+  }
+  </div>
+  <p><b>Profissional</b>: {{ item.nomeProfissional }}</p>
+
+  <div class="modal-actions">
+    <button class="btn-close" (click)="close()"></button>
+    <button class="btn-confirm" (click)="agendar()">Agendar</button>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+/* Container principal */
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Lista de serviços - flex coluna */
+.servicos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Card de serviço */
+.servico-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-left: 6px solid #40d333; /* destaque Deloitte */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.servico-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Título */
+.servico-header h3 {
+    margin: 0;
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Corpo */
+.servico-body p {
+    margin: 0.25rem 0;
+    color: #555555;
+}
+
+/* Botões */
+.servico-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* Botões específicos */
+.btn-excluir {
+    background: #c2160a;
+    color: white;
+}
+
+.btn-excluir:hover {
+    background: #a00c08;
+}
+
+.btn-editar {
+    background: #288A2D;
+    color: white;
+}
+
+.btn-editar:hover {
+    background: #155d27;
+}
+
+/* Botão adicionar */
+.adicionar-servico {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-adicionar {
+    background: #288A2D;
+    color: white;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+}
+
+.btn-adicionar:hover {
+    background: #155d27;
+}

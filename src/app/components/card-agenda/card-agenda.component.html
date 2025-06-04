@@ -1,0 +1,20 @@
+<div class="agenda-container">
+  @for (agendamento of agenda; track $index) {
+    <div class="card-agenda">
+      <div class="card-header">
+        <h3>{{ agendamento.nomeServico }}</h3>
+        <p>{{ agendamento.dateDisponibilidade }}</p>
+      </div>
+      <div class="card-body">
+        <p>{{ agendamento.nomeProfissional }}</p>
+      </div>
+      <div class="card-footer">
+        <button class="remove-btn" (click)="remover(agendamento.id)">Remover</button>
+      </div>
+    </div>
+  }@empty {
+    <div class="no-agenda">
+      <p>Nenhum agendamento encontrado.</p>
+    </div>
+  }
+</div>

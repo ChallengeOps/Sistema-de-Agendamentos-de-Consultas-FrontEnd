@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="login-background">
+  <div class="login-outer-container">
+    <div class="login-flex-container">
+      <div class="login-image-container">
+        <img src="page-log.png" />
+      </div>
+      <div class="login-container">
+        <h1 class="login-title">Login</h1>
+        <form class="login-form" [formGroup]="loginForm">
+          <label for="email" class="login-label">Email</label>
+          <input id="email" type="email" class="login-input" formControlName="email" placeholder="email@example.com" />
+
+          <label for="password" class="login-label">Password</label>
+          <input id="password" type="password" class="login-input" placeholder="Your password" formControlName="password" />
+
+          <button type="submit" class="login-button" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+        </form>
+        <p class="login-text">
+          Don't have an account?
+          <span class="register-link" (click)="navigate()">Register</span>
+        </p>
+        <img src="deloitte-black.png" alt="Deloitte logo" class="login-logo" />
+      </div>
+    </div>
+  </div>
+</div>
