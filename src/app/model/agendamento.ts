@@ -3,5 +3,4 @@ export interface Agendamento {
   nomeProfissional: string;
   nomeServico: string;
   dateDisponibilidade: string;
-  status: string;
 }

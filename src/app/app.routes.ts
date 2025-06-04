@@ -24,9 +24,12 @@ export const routes: Routes = [
         component: RegisterComponent
     },
     {
-        path: 'agenda',
-        component: MinhaAgendaComponent
-    },
+  path: 'agenda',
+  component: MinhaAgendaComponent,
+  data: { role: ['CLIENTE', 'PROFISSIONAL'] },  // agora é array
+  canActivate: [AuthGuardService]
+},
+
     {
         path: '',
         redirectTo: '/login',
@@ -34,10 +37,14 @@ export const routes: Routes = [
     },
     {
         path:'servicos',
-        component: ServicosPageComponent
+        component: ServicosPageComponent,
+        data: {role:  'PROFISSIONAL' },
+        canActivate: [AuthGuardService]
     },
     {
         path:'disponibilidade',
-        component:DisponibilidadePageComponent
+        component:DisponibilidadePageComponent,
+        data: {role: [ 'PROFISSIONAL'] },
+        canActivate: [AuthGuardService]
     }
 ];

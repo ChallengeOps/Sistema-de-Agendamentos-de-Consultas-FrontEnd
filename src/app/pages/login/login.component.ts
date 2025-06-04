@@ -51,7 +51,7 @@ export class LoginComponent {
           if (access === 'cliente') {
             this.router.navigate(['/cliente']);
           } else if (access === 'profissional') {
-            this.router.navigate(['/profissional']);
+            this.router.navigate(['/agenda']);
           } else {
             this.router.navigate(['/home']);
           }

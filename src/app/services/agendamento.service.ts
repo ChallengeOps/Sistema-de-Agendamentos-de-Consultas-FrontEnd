@@ -18,18 +18,17 @@ export class AgendamentoService {
     const token = sessionStorage.getItem('auth-token');
     const headers = { Authorization: `Bearer ${token}` };
     return this.httpClient.post(this.apiUrl, agendamento, { headers, responseType: 'text' });
-
   }
 
   listarTodos(){
     const token = sessionStorage.getItem('auth-token');
     const headers = { Authorization: `Bearer ${token}` };
-    return this.httpClient.get(this.apiUrl);
+    return this.httpClient.get<Agendamento[]>(this.apiUrl, { headers });
   }
 
   deletarAgendamento(id: number){
     const token = sessionStorage.getItem('auth-token');
     const headers = { Authorization: `Bearer ${token}` };
-    return this.httpClient.delete(this.apiUrl + `/${id}`);
+    return this.httpClient.delete(`${this.apiUrl}/${id}`, { headers, responseType: 'text' });
   }
 }
