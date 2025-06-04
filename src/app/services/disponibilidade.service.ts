@@ -13,10 +13,15 @@ export class DisponibilidadeService {
     private router: Router
     ) { }
 
-
   getDisponibilidades(idProfissional: number) {
-    const token = sessionStorage.getItem('auth-token');
+      const token = sessionStorage.getItem('auth-token');
       const headers = { Authorization: `Bearer ${token}` };
-    return this.httpClient.get<Disponibilidade[]>(`${this.apiUrl}/servico/+${idProfissional}`, { headers });
+        return this.httpClient.get<Disponibilidade[]>(`${this.apiUrl}/servico/+${idProfissional}`, { headers });
+  }
+
+  deleteDisponibilidade(id: number) {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+        return this.httpClient.delete(this.apiUrl +`/${id}`)
   }
 }

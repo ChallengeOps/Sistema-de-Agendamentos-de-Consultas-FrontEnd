@@ -21,4 +21,15 @@ export class AgendamentoService {
 
   }
 
+  listarTodos(){
+    const token = sessionStorage.getItem('auth-token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.httpClient.get(this.apiUrl);
+  }
+
+  deletarAgendamento(id: number){
+    const token = sessionStorage.getItem('auth-token');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.httpClient.delete(this.apiUrl + `/${id}`);
+  }
 }

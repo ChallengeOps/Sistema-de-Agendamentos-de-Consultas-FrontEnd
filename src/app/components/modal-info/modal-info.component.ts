@@ -21,7 +21,7 @@ export class ModalInfoComponent implements OnInit {
   disponibilidades: Disponibilidade[] =[];
 
   constructor (private service: DisponibilidadeService, private agendamentoService: AgendamentoService, private toastservice: ToastrService) { 
-    // Inicialização do componente
+
 
   }
 

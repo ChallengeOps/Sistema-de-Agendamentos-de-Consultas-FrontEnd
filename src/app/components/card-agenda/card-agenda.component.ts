@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Agendamento } from '../../model/agendamento';
+import { AgendamentoService } from '../../services/agendamento.service';
 
 @Component({
   selector: 'app-card-agenda',
@@ -32,15 +33,30 @@ export class CardAgendaComponent implements OnInit{
     }
   ];
 
-  constructor() {
+  constructor(private agendamentoService: AgendamentoService, ) {
+
   }
 
   ngOnInit(): void {
     
+    this.agendamentoService.listarTodos().subscribe(
+      (value) => {},
+      (error) => {
+        console.log(error)
+      }
+    )
+    
   }
 
   remover(id: number): void {
-    console.log(`Agendamento com ID ${id} removido.`);
+    this.agendamentoService.deletarAgendamento(id).subscribe(
+      (value) => {},
+      (error) => {
+        console.log(error)
+      }
+    )
+    
+
   }
 
 }
