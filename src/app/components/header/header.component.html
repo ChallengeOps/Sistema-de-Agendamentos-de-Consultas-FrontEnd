@@ -5,11 +5,20 @@
     </a>
     <div class="right-group">
       <nav class="main-nav" [class.open]="showMenu">
+        <button class="close-menu" (click)="toggleMenu()" aria-label="Fechar menu">✕</button>
         <ul>
-          <li *ngIf="role === 'CLIENTE'"><a href="cliente" >Serviços</a></li>
-          <li><a href="agenda">Agenda</a></li>
-          <li *ngIf="role === 'PROFISSIONAL'"><a href="servicos">Serviços</a></li>
-          <li *ngIf="role === 'PROFISSIONAL'"><a href="disponibilidade">Disponibilidade</a></li>
+          <li *ngIf="role === 'CLIENTE'">
+            <a href="cliente" (click)="toggleMenu()">Serviços</a>
+          </li>
+          <li>
+            <a href="agenda" (click)="toggleMenu()">Agenda</a>
+          </li>
+          <li *ngIf="role === 'PROFISSIONAL'">
+            <a href="servicos" (click)="toggleMenu()">Serviços</a>
+          </li>
+          <li *ngIf="role === 'PROFISSIONAL'">
+            <a href="disponibilidade" (click)="toggleMenu()">Disponibilidade</a>
+          </li>
           <li class="logado">{{name}}</li>
         </ul>
       </nav>
