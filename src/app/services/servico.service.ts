@@ -20,4 +20,15 @@ export class ServicoService {
       return this.httpClient.get<Servico[]>(`${this.apiUrl}/servicos`, { headers });
     }
 
+    listarServicosPorProfissional() {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.httpClient.get<Servico[]>(`${this.apiUrl}/profissionais/servicos`, { headers });
+    }
+
+    deletarServico(id: number) {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.httpClient.delete(`${this.apiUrl}/servicos/${id}`, { headers });
+    }
   }

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Servico } from '../../model/servico';
 import { ModalServicoComponent } from "../modal-servico/modal-servico.component";
 import { CommonModule } from '@angular/common';
+import { ServicoService } from '../../services/servico.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card-servico',
@@ -9,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './card-servico.component.html',
   styleUrl: './card-servico.component.css'
 })
-export class CardServicoComponent {
+export class CardServicoComponent implements OnInit {
 
   servicos:Servico[] = [
     {
@@ -33,9 +35,34 @@ export class CardServicoComponent {
       duracaoEmMinutos: 45,
       nomeProfissional: 'Ana Costa'
     }
-  ]
- 
- 
+  ];
 
- 
+  constructor(private servico: ServicoService, private toast: ToastrService) { }
+
+  ngOnInit(): void {
+    this.servico.listarServicosPorProfissional().subscribe({
+      next: (data) => {
+        this.servicos = data;
+      }
+      , error: (error) => {
+        console.error('Erro ao listar serviços:', error);
+      }
+    });
+  }
+  
+  excluir(id: number): void {
+    if (confirm('Tem certeza que deseja excluir este serviço?')) {
+      this.servico.deletarServico(id).subscribe({
+        next: () => {
+          this.toast.success('Serviço excluído com sucesso!', 'Sucesso');
+          this.servicos = this.servicos.filter(servico => servico.id !== id);
+          
+        },
+        error: (error) => {
+          console.error('Erro ao excluir serviço:', error);
+          this.toast.error('Erro ao excluir serviço.', 'Erro');
+        }
+      });
+    }
+  }
 }
