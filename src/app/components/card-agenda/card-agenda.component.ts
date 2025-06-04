@@ -39,4 +39,8 @@ export class CardAgendaComponent implements OnInit{
     
   }
 
+  remover(id: number): void {
+    console.log(`Agendamento com ID ${id} removido.`);
+  }
+
 }

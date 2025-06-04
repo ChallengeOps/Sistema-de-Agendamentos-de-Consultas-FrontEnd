@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Servico } from '../../model/servico';
+import { ModalServicoComponent } from "../modal-servico/modal-servico.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-servico',
-  imports: [],
+  imports: [CommonModule, ModalServicoComponent],
   templateUrl: './card-servico.component.html',
   styleUrl: './card-servico.component.css'
 })
@@ -32,4 +34,8 @@ export class CardServicoComponent {
       nomeProfissional: 'Ana Costa'
     }
   ]
+ 
+ 
+
+ 
 }

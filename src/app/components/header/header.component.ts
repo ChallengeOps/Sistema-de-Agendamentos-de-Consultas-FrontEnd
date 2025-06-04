@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   @Input() redirect:string = '';
   @Input() pageOne: string = '';
+  name: string = sessionStorage.getItem('user-name') ?? '';
 
   constructor(private route:Router) {}
 

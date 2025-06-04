@@ -1,1 +1,25 @@
-<p>card-disponibilidade works!</p>
+<div class="disponibilidades-container">
+  @for (disponibilidade of disponibilidades; track $index) {
+    <div class="card-disponibilidade">
+      <h3>{{ disponibilidade.data | date: 'dd/MM/yyyy' }}</h3>
+      <p>Horário: {{ disponibilidade.horarioInicio }} - {{ disponibilidade.horarioFim  }}</p>
+      <button class="btn-excluir" (click)="excluir(disponibilidade.id)">Excluir</button>
+    </div>
+  }
+
+  <div class="card-disponibilidade card-adicionar">
+    <h3>Adicionar Disponibilidade</h3>
+    <form [formGroup]="formDisp">
+      <label for="data">Data:</label>
+      <input type="date" id="data" name="data"   formControlName="data" required>
+
+      <label for="horarioInicio">Horário Início:</label>
+      <input type="time" id="horarioInicio" name="horarioInicio" formControlName="horarioInicio" required>
+
+      <label for="horarioFim">Horário Fim:</label>
+      <input type="time" id="horarioFim" name="horarioFim"  formControlName="horarioFim" required>
+
+      <button type="submit" (click)="enviar()" [disabled]="!formDisp.valid">Adicionar</button>
+    </form>
+  </div>
+</div>

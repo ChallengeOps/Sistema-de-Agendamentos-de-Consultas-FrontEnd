@@ -9,7 +9,7 @@
         <p>{{ agendamento.nomeProfissional }}</p>
       </div>
       <div class="card-footer">
-        <button class="remove-btn">Remover</button>
+        <button class="remove-btn" (click)="remover(agendamento.id)">Remover</button>
       </div>
     </div>
   }

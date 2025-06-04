@@ -25,9 +25,7 @@ export const routes: Routes = [
     },
     {
         path: 'agenda',
-        component: MinhaAgendaComponent,
-        data: { role: ['CLIENTE', 'PROFISSIONAL'] },
-        canActivate: [AuthGuardService]
+        component: MinhaAgendaComponent
     },
     {
         path: '',
@@ -40,8 +38,6 @@ export const routes: Routes = [
     },
     {
         path:'disponibilidade',
-        component:DisponibilidadePageComponent,
-        data: { role: ['PROFISSIONAL'] },
-        canActivate: [AuthGuardService]
+        component:DisponibilidadePageComponent
     }
 ];
