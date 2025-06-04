@@ -1,1 +1,26 @@
+<div class="modal" [ngClass]="{'show': visivel}" (click)="onBackdropClick($event)">
+  <div class="modal-content">
+    
+    <h2 class="modal-title">{{name}}</h2>
 
+    <form [formGroup]="servicoForm" class="modal-form">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input id="nome" formControlName="nome" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input id="descricao" formControlName="descricao" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="duracao">Duração (minutos):</label>
+        <input id="duracao" formControlName="duracaoEmMinutos" type="number" class="form-control">
+      </div>
+
+      <button type="submit" class="btn btn-primary button-btn" (click)="submit()">Salvar</button>
+      <button type="button" class="button-btn btn btn-secondary" (click)="onFechar()">Cancelar</button>
+    </form>
+  </div>
+</div>

@@ -11,14 +11,24 @@
         </div>
         <div class="servico-actions">
           <button class="btn-excluir" (click)="excluir(item.id)">Excluir</button>
-          <button class="btn-editar">Editar</button>
+          <button class="btn btn-secondary" (click)="abrirModalEditar()">Editar</button>
         </div>
+      
       </div>
+       <app-modal-servico [visivel]="modalEditarAberto"
+       (fechar)="fecharModalEditar()"
+        [name]="'Editar Serviço'"
+        [servicoEditar]="item"></app-modal-servico>
     }
   </div>
 
   <div class="adicionar-servico">
-    <button class="btn-adicionar" >Adicionar Serviço</button>
+    <button class="btn-adicionar" (click)="abrirModal()">Adicionar Serviço</button>
   </div>
 </div>
 
+<app-modal-servico [visivel]="modalAberto"
+  (fechar)="fecharModal()"
+  [name]="'Criar Serviço'"></app-modal-servico>
+
+ 

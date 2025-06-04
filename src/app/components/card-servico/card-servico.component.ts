@@ -7,37 +7,34 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card-servico',
-  imports: [CommonModule],
+  imports: [CommonModule, ModalServicoComponent],
   templateUrl: './card-servico.component.html',
   styleUrl: './card-servico.component.css'
 })
 export class CardServicoComponent implements OnInit {
 
-  servicos:Servico[] = [
-    {
-      id: 1,
-      nome: 'Corte de Cabelo',
-      descricao: 'Corte de cabelo masculino ou feminino, com estilo moderno.',
-      duracaoEmMinutos: 30,
-      nomeProfissional: 'João Silva'
-    },
-    {
-      id: 2,
-      nome: 'Manicure e Pedicure',
-      descricao: 'Serviço completo de manicure e pedicure, incluindo esmaltação.',
-      duracaoEmMinutos: 60,
-      nomeProfissional: 'Maria Oliveira'
-    },
-    {
-      id: 3,
-      nome: 'Massagem Relaxante',
-      descricao: 'Massagem relaxante para aliviar o estresse e a tensão muscular.',
-      duracaoEmMinutos: 45,
-      nomeProfissional: 'Ana Costa'
-    }
-  ];
+  modalAberto = false;
+  modalEditarAberto = false;
 
+  servicos:Servico[] = [];
   constructor(private servico: ServicoService, private toast: ToastrService) { }
+
+
+  abrirModal() {
+    this.modalAberto = true;
+  }
+
+  fecharModal() {
+    this.modalAberto = false;
+  }
+
+  fecharModalEditar() {
+    this.modalEditarAberto = false;
+  }
+ 
+  abrirModalEditar() {
+    this.modalEditarAberto = true;
+  }
 
   ngOnInit(): void {
     this.servico.listarServicosPorProfissional().subscribe({
