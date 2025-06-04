@@ -8,7 +8,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    background-color: #f5f5f5;
 }
 
 /* Lista de serviços - flex coluna */
@@ -27,7 +26,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    border-left: 6px solid #86BC25; /* destaque Deloitte */
+    border-left: 6px solid #40d333; /* destaque Deloitte */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -68,21 +67,21 @@ button {
 
 /* Botões específicos */
 .btn-excluir {
-    background: #ff4d4f;
+    background: #c2160a;
     color: white;
 }
 
 .btn-excluir:hover {
-    background: #d9363e;
+    background: #a00c08;
 }
 
 .btn-editar {
-    background: #86BC25;
+    background: #288A2D;
     color: white;
 }
 
 .btn-editar:hover {
-    background: #6E9F1F;
+    background: #155d27;
 }
 
 /* Botão adicionar */
@@ -92,7 +91,7 @@ button {
 }
 
 .btn-adicionar {
-    background: #86BC25;
+    background: #288A2D;
     color: white;
     font-size: 1rem;
     padding: 0.75rem 1.5rem;
@@ -100,5 +99,5 @@ button {
 }
 
 .btn-adicionar:hover {
-    background: #6E9F1F;
+    background: #155d27;
 }

@@ -3,13 +3,13 @@
   margin: 2rem auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
+  justify-content: center;
+  height: 80%;
   flex-direction: column;
   gap: 1.5rem;
   color: #333333;
-  background-color: #f9f9f9;
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.05);
 }
 
 .card-disponibilidade {
@@ -51,7 +51,7 @@
 }
 
 .btn-excluir {
-  background-color: #86BC25; /* azul Deloitte */
+  background-color: #c2160a; /* azul Deloitte */
   border: none;
   color: white;
   font-weight: 600;
@@ -63,7 +63,7 @@
 }
 
 .btn-excluir:hover {
-  background-color: #003f7d;
+  background-color: #a00c08; /* azul Deloitte mais escuro */
 }
 
 .card-adicionar {
@@ -106,14 +106,13 @@
 }
 
 .card-adicionar input:focus {
-  border-color: #86BC25;
+  border-color: #288A2D;
   outline: none;
-  box-shadow: 0 0 5px #86BC25;
 }
 
 .card-adicionar button {
   width: 100%;
-  background-color: #86BC25;
+  background-color: #288A2D;
   color: white;
   font-weight: 700;
   padding: 0.75rem;
@@ -126,5 +125,5 @@
 }
 
 .card-adicionar button:hover {
-  background-color: #003f7d;
+  background-color: #155d27;
 }

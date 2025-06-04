@@ -36,6 +36,11 @@
   font-size: 16px;
 }
 
+.login-input:focus {
+  border-color: #288A2D;
+  outline: none;
+}
+
 .checkbox-group {
   display: flex;
   justify-content: center;
@@ -68,7 +73,7 @@
 .login-button {
   width: 300px;
   padding: 12px;
-  background-color: #1e7e34;
+  background-color: #288A2D;
   color: white;
   font-size: 18px;
   border: none;
