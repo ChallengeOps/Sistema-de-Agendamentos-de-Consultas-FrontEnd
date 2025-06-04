@@ -26,6 +26,12 @@ export class DisponibilidadeService {
   return this.httpClient.delete(this.apiUrl + `/${id}`, { headers });
 }
 
+createDisponibilidade(disponibilidade: Disponibilidade) {
+  const token = sessionStorage.getItem('auth-token');
+  const headers = { Authorization: `Bearer ${token}` };
+  return this.httpClient.post(this.apiUrl, disponibilidade, { headers });
+}
+
 
   getAllDisponibilidades() {
     const token = sessionStorage.getItem('auth-token');

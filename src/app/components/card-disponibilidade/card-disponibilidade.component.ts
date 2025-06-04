@@ -48,7 +48,21 @@ export class CardDisponibilidadeComponent implements OnInit {
   }
 
   enviar() {
-    console.log('Formulário enviado:', this.formDisp.value);
+    if (this.formDisp.valid) {
+      const disponibilidade = this.formDisp.value;
+      this.disponibilidadeService.createDisponibilidade(disponibilidade).subscribe({
+        next: () => {
+          this.toastsrvice.success('Disponibilidade criada com sucesso!', 'Sucesso');
+          this.formDisp.reset();
+          this.ngOnInit(); // Recarrega as disponibilidades
+        },
+        error: (error) => {
+          this.toastsrvice.error('Erro ao criar disponibilidade: ' + error.message, 'Erro');
+        }
+      });
+    } else {
+      this.toastsrvice.error('Por favor, preencha todos os campos obrigatórios.', 'Erro de validação');
+    }
   }
 
 }
