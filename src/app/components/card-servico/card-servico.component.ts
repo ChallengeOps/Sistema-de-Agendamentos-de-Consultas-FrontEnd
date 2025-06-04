@@ -4,6 +4,7 @@ import { ModalServicoComponent } from "../modal-servico/modal-servico.component"
 import { CommonModule } from '@angular/common';
 import { ServicoService } from '../../services/servico.service';
 import { ToastrService } from 'ngx-toastr';
+import { CreateServico } from '../../model/createServico';
 
 @Component({
   selector: 'app-card-servico',
@@ -61,5 +62,19 @@ export class CardServicoComponent implements OnInit {
         }
       });
     }
+  }
+
+  salvar(createServico:CreateServico): void {
+    this.servico.criarServico(createServico).subscribe({
+      next: (data) => {
+        this.toast.success('Serviço criado com sucesso!', 'Sucesso');
+        this.servicos.push(data);
+        this.fecharModal();
+      },
+      error: (error) => {
+        console.error('Erro ao criar serviço:', error);
+        this.toast.error('Erro ao criar serviço.', 'Erro');
+      }
+    });
   }
 }

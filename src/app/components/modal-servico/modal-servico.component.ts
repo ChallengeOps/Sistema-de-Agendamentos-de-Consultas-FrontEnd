@@ -4,6 +4,7 @@ import { ServicoService } from '../../services/servico.service';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CreateServico } from '../../model/createServico';
 
 @Component({
   selector: 'app-modal-servico',
@@ -18,6 +19,7 @@ export class ModalServicoComponent implements OnInit {
    @Input() name: string = '';
   @Output() fechar = new EventEmitter<void>();
   @Output() submitir = new EventEmitter<Servico>();
+  @Output() salvarEvento = new EventEmitter<CreateServico>();
 
     servicoForm!: FormGroup;
 
@@ -53,6 +55,17 @@ export class ModalServicoComponent implements OnInit {
   
   submit() {
     this.submitir.emit(this.servicoForm.value);
+  }
+
+  salvar() {
+    if (this.servicoForm.valid) {
+      const servico: CreateServico = this.servicoForm.value;
+      console.log('Serviço a ser salvo:', servico);
+      this.salvarEvento.emit(servico);
+      this.servicoForm.reset();
+    } else {
+      this.servicoForm.markAllAsTouched();
+    }
   }
    
 }

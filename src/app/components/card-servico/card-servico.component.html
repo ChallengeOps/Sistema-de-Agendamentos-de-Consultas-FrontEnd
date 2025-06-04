@@ -29,6 +29,7 @@
 
 <app-modal-servico [visivel]="modalAberto"
   (fechar)="fecharModal()"
-  [name]="'Criar Serviço'"></app-modal-servico>
+  [name]="'Criar Serviço'" 
+  (salvarEvento)="salvar($event)"></app-modal-servico>
 
  
