@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 80%;
 }
 
 .container-servicos h2 {
@@ -78,6 +78,10 @@
   }
   .container-servicos h2 {
     font-size: 1.2rem;
+  }
+
+  .container-servicos  {
+    height: 100%;
   }
   .card {
     padding: 1.3rem 1rem;
