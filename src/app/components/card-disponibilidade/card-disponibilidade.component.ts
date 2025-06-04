@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DisponibilidadeService } from '../../services/disponibilidade.service';
+import { ToastrService } from 'ngx-toastr';
+import { DisponibilidadeList} from '../../model/disponibilidadeList';
 
 @Component({
   selector: 'app-card-disponibilidade',
@@ -8,42 +11,40 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   templateUrl: './card-disponibilidade.component.html',
   styleUrl: './card-disponibilidade.component.css'
 })
-export class CardDisponibilidadeComponent {
+export class CardDisponibilidadeComponent implements OnInit {
   formDisp!: FormGroup;
 
-  disponibilidades = [
-    {
-      id: 1,
-      data: '2023-10-01',
-      horarioInicio: '08:00',
-      horarioFim: '12:00',
-      nomeProfissional: 'João Silva'
-    },
-    {
-      id: 2,
-      data: '2023-10-01',
-      horarioInicio: '14:00',
-      horarioFim: '18:00',
-      nomeProfissional: 'Maria Oliveira'
-    },
-    {
-      id: 3,
-      data: '2023-10-02',
-      horarioInicio: '09:00',
-      horarioFim: '13:00',
-      nomeProfissional: 'Ana Costa'
-    }
-  ];
+  disponibilidades: DisponibilidadeList[] = []; 
 
-  constructor(){
+  constructor(private disponibilidadeService: DisponibilidadeService, private toastsrvice: ToastrService) { // Substitua 'any' pelo serviço real se necessário
      this.formDisp = new FormGroup({
       data: new FormControl('', Validators.required),
       horarioInicio: new FormControl('', Validators.required),
       horarioFim: new FormControl('', Validators.required)
     });  }
 
+  ngOnInit(): void {
+    this.disponibilidadeService.getAllDisponibilidades().subscribe({
+      next: (disponibilidades) => {
+        this.disponibilidades = disponibilidades;
+      },
+      error: (error) => {
+        this.toastsrvice.error('Erro ao carregar disponibilidades: ' + error.message, 'Erro');
+      }
+    });
+
+  }
+
   excluir(id: number) {
-    console.log(`Excluindo disponibilidade com ID: ${id}`);
+    this.disponibilidadeService.deleteDisponibilidade(id).subscribe({
+      next: () => {
+        this.toastsrvice.success('Disponibilidade excluída com sucesso!', 'Sucesso');
+        this.disponibilidades = this.disponibilidades.filter(disp => disp.id !== id);
+      }
+      , error: (error) => {
+        this.toastsrvice.error('Erro ao excluir disponibilidade: ' + error.message, 'Erro');
+      }
+    });
   }
 
   enviar() {

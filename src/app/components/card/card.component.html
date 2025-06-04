@@ -6,6 +6,10 @@
         <h3>{{ item.nome }}</h3>
         <p>{{ item.descricao }}</p>
       </div>
+    } @empty {
+      <div class="no-items">
+        <p>Nenhum serviço encontrado.</p>
+      </div>
     }
   </div>
 </div>

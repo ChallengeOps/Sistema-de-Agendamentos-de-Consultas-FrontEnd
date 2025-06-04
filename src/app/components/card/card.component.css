@@ -26,6 +26,13 @@
   gap: 2rem;
 }
 
+.no-items {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+  padding: 2rem;
+  width: 100%;
+}
 .card {
   background: #fff;
   border-radius: 18px;

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-servico',
-  imports: [CommonModule, ModalServicoComponent],
+  imports: [CommonModule],
   templateUrl: './card-servico.component.html',
   styleUrl: './card-servico.component.css'
 })

@@ -24,6 +24,13 @@
   transition: box-shadow 0.3s ease;
 }
 
+.no-items {
+  text-align: center;
+  color: #888888;
+  font-size: 1.2rem;
+  padding: 2rem;
+  width: 100%;
+}
 .card-disponibilidade:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }

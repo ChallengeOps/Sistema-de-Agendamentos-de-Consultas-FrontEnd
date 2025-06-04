@@ -6,7 +6,7 @@
     <div class="right-group">
       <nav class="main-nav" [class.open]="showMenu">
         <ul>
-          <li><a href="{{redirect}}" >{{pageOne}}</a></li>
+          <li *ngIf="role === 'CLIENTE'"><a href="cliente" >Serviços</a></li>
           <li><a href="agenda">Agenda</a></li>
           <li *ngIf="role === 'PROFISSIONAL'"><a href="servicos">Serviços</a></li>
           <li *ngIf="role === 'PROFISSIONAL'"><a href="disponibilidade">Disponibilidade</a></li>

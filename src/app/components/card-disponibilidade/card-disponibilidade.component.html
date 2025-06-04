@@ -2,8 +2,13 @@
   @for (disponibilidade of disponibilidades; track $index) {
     <div class="card-disponibilidade">
       <h3>{{ disponibilidade.data | date: 'dd/MM/yyyy' }}</h3>
-      <p>Horário: {{ disponibilidade.horarioInicio }} - {{ disponibilidade.horarioFim  }}</p>
+      <p>Horário: {{ disponibilidade.horaInicio}} - {{ disponibilidade.horaFim  }}</p>
       <button class="btn-excluir" (click)="excluir(disponibilidade.id)">Excluir</button>
+    </div>
+  }
+  @empty {
+    <div class="no-items">
+      <p>Nenhuma disponibilidade encontrada.</p>
     </div>
   }
 

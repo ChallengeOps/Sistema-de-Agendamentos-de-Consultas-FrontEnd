@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +19,11 @@ export class HeaderComponent {
 
   showMenu = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toast: ToastrService) {}
 
   ngOnInit() {
     this.name = sessionStorage.getItem('user-name') ?? '';
-    this.role = sessionStorage.getItem('user-role');  // Pega o role do usuário
+    this.role = sessionStorage.getItem('user-access');   // <-- alterado aqui!
   }
 
   toggleMenu() {
@@ -33,7 +34,7 @@ export class HeaderComponent {
     sessionStorage.removeItem('auth-token');
     sessionStorage.removeItem('user-name');
     sessionStorage.removeItem('user-access');
-    sessionStorage.removeItem('user-role');
+    sessionStorage.removeItem('user-access'); 
     this.router.navigate(['/login']);
   }
 }

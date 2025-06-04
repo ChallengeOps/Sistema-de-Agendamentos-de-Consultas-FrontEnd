@@ -24,12 +24,11 @@ export const routes: Routes = [
         component: RegisterComponent
     },
     {
-  path: 'agenda',
-  component: MinhaAgendaComponent,
-  data: { role: ['CLIENTE', 'PROFISSIONAL'] },  // agora é array
-  canActivate: [AuthGuardService]
-},
-
+        path: 'agenda',
+        component: MinhaAgendaComponent,
+        data: { role: ['CLIENTE', 'PROFISSIONAL'] },  
+        canActivate: [AuthGuardService]
+    },
     {
         path: '',
         redirectTo: '/login',
@@ -44,7 +43,7 @@ export const routes: Routes = [
     {
         path:'disponibilidade',
         component:DisponibilidadePageComponent,
-        data: {role: [ 'PROFISSIONAL'] },
+        data: {role: 'PROFISSIONAL' },
         canActivate: [AuthGuardService]
     }
 ];
