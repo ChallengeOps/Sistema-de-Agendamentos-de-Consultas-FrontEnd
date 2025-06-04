@@ -77,4 +77,23 @@ export class CardServicoComponent implements OnInit {
       }
     });
   }
+
+  editarServico(servico: CreateServico, id:number): void {
+    this.servico.editarServico(servico, id).subscribe({
+      next: (data) => {
+        this.toast.success('Serviço editado com sucesso!', 'Sucesso');
+        const index = this.servicos.findIndex(s => s.id === id);
+        if (index !== -1) {
+          this.servicos[index] = data;
+        }
+        this.fecharModalEditar();
+      }
+      , error: (error) => {
+        console.error('Erro ao editar serviço:', error);
+        this.toast.error('Erro ao editar serviço.', 'Erro');
+      }
+    });    
+  }
+
+  
 }

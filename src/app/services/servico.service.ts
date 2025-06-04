@@ -38,4 +38,10 @@ export class ServicoService {
       const headers = { Authorization: `Bearer ${token}` };
       return this.httpClient.post<Servico>(`${this.apiUrl}/servicos`, servico, { headers });
     }
+
+    editarServico(servico: CreateServico, id: number) {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.httpClient.put<Servico>(`${this.apiUrl}/servicos/${id}`, servico, { headers });
+    }
   }

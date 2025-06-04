@@ -14,16 +14,19 @@ import { CreateServico } from '../../model/createServico';
 })
 export class ModalServicoComponent implements OnInit {
 
-  @Input() servicoEditar: Servico | null = null;
-   @Input() visivel = false;
-   @Input() name: string = '';
+  @Input() modo: 'criar' | 'editar' = 'criar';
+
+
+  @Input()  servicoEditar: Servico | null = null;
+  @Input() visivel = false;
+  @Input() name: string = '';
   @Output() fechar = new EventEmitter<void>();
-  @Output() submitir = new EventEmitter<Servico>();
+  @Output() submitir = new EventEmitter<CreateServico>();
   @Output() salvarEvento = new EventEmitter<CreateServico>();
 
     servicoForm!: FormGroup;
 
-    constructor() {
+    constructor( private toastr: ToastrService) {
       this.servicoForm = new FormGroup({
         nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
         descricao: new FormControl('', [Validators.required, Validators.minLength(10)]),
@@ -58,14 +61,33 @@ export class ModalServicoComponent implements OnInit {
   }
 
   salvar() {
-    if (this.servicoForm.valid) {
-      const servico: CreateServico = this.servicoForm.value;
-      console.log('Serviço a ser salvo:', servico);
-      this.salvarEvento.emit(servico);
-      this.servicoForm.reset();
-    } else {
-      this.servicoForm.markAllAsTouched();
-    }
+     
+  
+  if (this.servicoForm.valid) {
+    const servico: CreateServico = {
+      nome: this.servicoForm.value.nome,
+      descricao: this.servicoForm.value.descricao,
+      duracaoEmMinutos: this.servicoForm.value.duracaoEmMinutos
+    };
+    this.salvarEvento.emit(servico);
+    this.servicoForm.reset();
+  } else {
+    this.toastr.error('Por favor, preencha todos os campos corretamente.', 'Erro');
+    this.servicoForm.markAllAsTouched();
   }
-   
+}
+
+  onSalvarOuEditar() {
+  if (this.modo === 'criar') {
+    console.log('Modo de criação ativo');
+  
+    this.salvar();
+  } else {
+    this.submit();
+    console.log('Modo de edição ativo'+ this.modo
+    );
+  }
+}
+
+  
 }

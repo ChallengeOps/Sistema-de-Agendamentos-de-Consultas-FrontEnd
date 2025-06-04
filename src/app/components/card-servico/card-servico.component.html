@@ -15,10 +15,15 @@
         </div>
       
       </div>
-       <app-modal-servico [visivel]="modalEditarAberto"
-       (fechar)="fecharModalEditar()"
-        [name]="'Editar Serviço'"
-        [servicoEditar]="item"></app-modal-servico>
+       <app-modal-servico 
+             [visivel]="modalEditarAberto"
+            (fechar)="fecharModalEditar()"
+             [name]="'Editar Serviço'"
+             [servicoEditar]="item"
+            (submitir)="editarServico($event, item.id)"
+            [modo]="'editar'">
+       </app-modal-servico>
+
     }
   </div>
 
@@ -27,9 +32,12 @@
   </div>
 </div>
 
-<app-modal-servico [visivel]="modalAberto"
+<app-modal-servico 
+  [visivel]="modalAberto"
   (fechar)="fecharModal()"
   [name]="'Criar Serviço'" 
-  (salvarEvento)="salvar($event)"></app-modal-servico>
+  (salvarEvento)="salvar($event)"
+  [modo]="'criar'">
+</app-modal-servico>
 
  
