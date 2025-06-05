@@ -34,7 +34,6 @@ export class ModalServicoComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    // Só executa uma vez, normalmente não precisamos mais disso.
   }
 
   ngOnChanges(changes: SimpleChanges) {
