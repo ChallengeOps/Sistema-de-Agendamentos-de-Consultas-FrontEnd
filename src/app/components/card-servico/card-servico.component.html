@@ -1,6 +1,6 @@
 <div class="container">
   <div class="servicos-lista">
-    @for (item of servicos; track $index) {
+    @for (item of servicos; track item.id) {
       <div class="servico-card">
         <div class="servico-header">
           <h3>{{ item.nome }}</h3>
@@ -11,18 +11,11 @@
         </div>
         <div class="servico-actions">
           <button class="btn-excluir" (click)="excluir(item.id)">Excluir</button>
-          <button class="btn btn-secondary" (click)="abrirModalEditar()">Editar</button>
+          <button class="btn btn-secondary" (click)="abrirModalEditar(item)">Editar</button>
         </div>
       
       </div>
-       <app-modal-servico 
-             [visivel]="modalEditarAberto"
-            (fechar)="fecharModalEditar()"
-             [name]="'Editar Serviço'"
-             [servicoEditar]="item"
-            (submitir)="editarServico($event, item.id)"
-            [modo]="'editar'">
-       </app-modal-servico>
+     
 
     }
   </div>
@@ -39,5 +32,15 @@
   (salvarEvento)="salvar($event)"
   [modo]="'criar'">
 </app-modal-servico>
+
+<app-modal-servico 
+  [visivel]="modalEditarAberto"
+  (fechar)="fecharModalEditar()"
+  [name]="'Editar Serviço'"
+  [servicoEditar]="servicoSelecionado"
+  (submitir)="editarServico($event, servicoSelecionado!.id)"
+  [modo]="'editar'">
+</app-modal-servico>
+
 
  

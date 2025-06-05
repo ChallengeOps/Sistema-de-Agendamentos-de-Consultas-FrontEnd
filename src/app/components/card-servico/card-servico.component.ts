@@ -15,7 +15,6 @@ import { CreateServico } from '../../model/createServico';
 export class CardServicoComponent implements OnInit {
 
   modalAberto = false;
-  modalEditarAberto = false;
 
   servicos:Servico[] = [];
   constructor(private servico: ServicoService, private toast: ToastrService) { }
@@ -29,13 +28,18 @@ export class CardServicoComponent implements OnInit {
     this.modalAberto = false;
   }
 
-  fecharModalEditar() {
-    this.modalEditarAberto = false;
-  }
- 
-  abrirModalEditar() {
-    this.modalEditarAberto = true;
-  }
+  modalEditarAberto = false;
+servicoSelecionado: Servico | null = null;
+
+abrirModalEditar(servico: Servico) {
+  this.servicoSelecionado = servico;
+  this.modalEditarAberto = true;
+}
+
+fecharModalEditar() {
+  this.modalEditarAberto = false;
+  this.servicoSelecionado = null;
+}
 
   ngOnInit(): void {
     this.servico.listarServicosPorProfissional().subscribe({
@@ -81,6 +85,7 @@ export class CardServicoComponent implements OnInit {
   editarServico(servico: CreateServico, id:number): void {
     this.servico.editarServico(servico, id).subscribe({
       next: (data) => {
+        
         this.toast.success('Serviço editado com sucesso!', 'Sucesso');
         const index = this.servicos.findIndex(s => s.id === id);
         if (index !== -1) {
