@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Servico } from '../model/servico';
+import { CreateServico } from '../model/createServico';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,17 @@ export class ServicoService {
       const token = sessionStorage.getItem('auth-token');
       const headers = { Authorization: `Bearer ${token}` };
       return this.httpClient.delete(`${this.apiUrl}/servicos/${id}`, { headers });
+    }
+
+    criarServico(servico: CreateServico) {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.httpClient.post<Servico>(`${this.apiUrl}/servicos`, servico, { headers });
+    }
+
+    editarServico(servico: CreateServico, id: number) {
+      const token = sessionStorage.getItem('auth-token');
+      const headers = { Authorization: `Bearer ${token}` };
+      return this.httpClient.put<Servico>(`${this.apiUrl}/servicos/${id}`, servico, { headers });
     }
   }

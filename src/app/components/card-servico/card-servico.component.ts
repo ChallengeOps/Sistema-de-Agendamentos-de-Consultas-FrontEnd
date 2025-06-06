@@ -4,40 +4,42 @@ import { ModalServicoComponent } from "../modal-servico/modal-servico.component"
 import { CommonModule } from '@angular/common';
 import { ServicoService } from '../../services/servico.service';
 import { ToastrService } from 'ngx-toastr';
+import { CreateServico } from '../../model/createServico';
 
 @Component({
   selector: 'app-card-servico',
-  imports: [CommonModule],
+  imports: [CommonModule, ModalServicoComponent],
   templateUrl: './card-servico.component.html',
   styleUrl: './card-servico.component.css'
 })
 export class CardServicoComponent implements OnInit {
 
-  servicos:Servico[] = [
-    {
-      id: 1,
-      nome: 'Corte de Cabelo',
-      descricao: 'Corte de cabelo masculino ou feminino, com estilo moderno.',
-      duracaoEmMinutos: 30,
-      nomeProfissional: 'João Silva'
-    },
-    {
-      id: 2,
-      nome: 'Manicure e Pedicure',
-      descricao: 'Serviço completo de manicure e pedicure, incluindo esmaltação.',
-      duracaoEmMinutos: 60,
-      nomeProfissional: 'Maria Oliveira'
-    },
-    {
-      id: 3,
-      nome: 'Massagem Relaxante',
-      descricao: 'Massagem relaxante para aliviar o estresse e a tensão muscular.',
-      duracaoEmMinutos: 45,
-      nomeProfissional: 'Ana Costa'
-    }
-  ];
+  modalAberto = false;
 
+  servicos:Servico[] = [];
   constructor(private servico: ServicoService, private toast: ToastrService) { }
+
+
+  abrirModal() {
+    this.modalAberto = true;
+  }
+
+  fecharModal() {
+    this.modalAberto = false;
+  }
+
+  modalEditarAberto = false;
+servicoSelecionado: Servico | null = null;
+
+abrirModalEditar(servico: Servico) {
+  this.servicoSelecionado = servico;
+  this.modalEditarAberto = true;
+}
+
+fecharModalEditar() {
+  this.modalEditarAberto = false;
+  this.servicoSelecionado = null;
+}
 
   ngOnInit(): void {
     this.servico.listarServicosPorProfissional().subscribe({
@@ -65,4 +67,38 @@ export class CardServicoComponent implements OnInit {
       });
     }
   }
+
+  salvar(createServico:CreateServico): void {
+    this.servico.criarServico(createServico).subscribe({
+      next: (data) => {
+        this.toast.success('Serviço criado com sucesso!', 'Sucesso');
+        this.servicos.push(data);
+        this.fecharModal();
+      },
+      error: (error) => {
+        console.error('Erro ao criar serviço:', error);
+        this.toast.error('Erro ao criar serviço.', 'Erro');
+      }
+    });
+  }
+
+  editarServico(servico: CreateServico, id:number): void {
+    this.servico.editarServico(servico, id).subscribe({
+      next: (data) => {
+        
+        this.toast.success('Serviço editado com sucesso!', 'Sucesso');
+        const index = this.servicos.findIndex(s => s.id === id);
+        if (index !== -1) {
+          this.servicos[index] = data;
+        }
+        this.fecharModalEditar();
+      }
+      , error: (error) => {
+        console.error('Erro ao editar serviço:', error);
+        this.toast.error('Erro ao editar serviço.', 'Erro');
+      }
+    });    
+  }
+
+  
 }
